@@ -1,0 +1,6 @@
+#Undesired root files
+*.root
+
+#Undesired h5 files
+*.h5
+*/*.h5
