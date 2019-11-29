@@ -16,10 +16,6 @@ from dnn_functions import *
 pd_folder = 'dataframes/'
 result_folder = 'model_weights/'
 
-#old:
-#bkg = ['WJetsToLNu','ZJetsToNuNu_HT-100To200','ZJetsToNuNu_HT-200To400','ZJetsToNuNu_HT-400To600','ZJetsToNuNu_HT-600To800','ZJetsToNuNu_HT-800To1200', 'ZJetsToNuNu_HT-1200To2500', 'ZJetsToNuNu_HT-2500ToInf', 'WW', 'WZ', 'ZZ', 'TTbar', 'ST_tW_antitop', 'ST_tW_top', 'ST_s', 'ST_t_antitop', 'ST_t_top', 'DYJetsToLL','QCD_HT300to500','QCD_HT500to700','QCD_HT700to1000','QCD_HT1000to1500','QCD_HT1500to2000','QCD_HT2000toInf',]
-
-sgn = ['VBFH_M15_ctau2000','VBFH_M20_ctau2000','VBFH_M25_ctau2000','VBFH_M15_ctau5000','VBFH_M20_ctau5000','VBFH_M25_ctau5000']
 sgn = ['VBFH_M15_ctau100','VBFH_M20_ctau100','VBFH_M25_ctau100','VBFH_M15_ctau500','VBFH_M20_ctau500','VBFH_M25_ctau500','VBFH_M15_ctau1000','VBFH_M20_ctau1000','VBFH_M25_ctau1000','VBFH_M15_ctau2000','VBFH_M20_ctau2000','VBFH_M25_ctau2000','VBFH_M15_ctau5000','VBFH_M20_ctau5000','VBFH_M25_ctau5000','VBFH_M15_ctau10000','VBFH_M20_ctau10000','VBFH_M25_ctau10000']
 bkg = ['ZJetsToNuNu','DYJetsToLL','WJetsToLNu','QCD','VV','TTbar','ST','DYJetsToQQ','WJetsToQQ']
 
@@ -465,10 +461,10 @@ def test_to_root(folder,result_folder,output_root_folder,variables,is_signal,mod
 
 
 ####prepare_dataset(pd_folder,sgn,bkg,model_label="3",weight="EventWeightNormalized")
-#prepare_dataset_new(pd_folder,sgn,bkg,model_label="3",weight="EventWeightNormalized")
-#fit_model(pd_folder,result_folder,cols,"is_signal","EventWeightNormalized",n_epochs=50,n_batch_size=2000,patience_val=5,val_split=0.25,model_label="3")
-#evaluate_model(pd_folder,result_folder,cols,"is_signal","EventWeightNormalized",n_batch_size=2000,model_label="3")
-#write_discriminator_output(pd_folder,result_folder,cols,"is_signal","EventWeightNormalized",n_batch_size=2000,model_label="3",sample_list=sgn+bkg)
+prepare_dataset_new(pd_folder,sgn,bkg,model_label="3",weight="EventWeightNormalized")
+fit_model(pd_folder,result_folder,cols,"is_signal","EventWeightNormalized",n_epochs=50,n_batch_size=2000,patience_val=5,val_split=0.25,model_label="3")
+evaluate_model(pd_folder,result_folder,cols,"is_signal","EventWeightNormalized",n_batch_size=2000,model_label="3")
+write_discriminator_output(pd_folder,result_folder,cols,"is_signal","EventWeightNormalized",n_batch_size=2000,model_label="3",sample_list=sgn+bkg)
 var = cols + ["EventWeight","isVBF","isMC","is_signal","sigprob"]
 output_root_files = "root_files"
 test_to_root(pd_folder,result_folder,output_root_files,var,"is_signal",model_label="3",sample_list=sgn+bkg)
@@ -484,8 +480,3 @@ test_to_root(pd_folder,result_folder,output_root_files,var,"is_signal",model_lab
 #idea:
 # - think how to rescale events given we are using only a part of the dataset (maybe split separately test and train and consider 20% of the weight, then renormalize it accordingly)
 # - revert to root tree
-
-
-
-
-

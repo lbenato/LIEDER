@@ -9,6 +9,13 @@ Input and output root files are designed to be compatible with LLP repository.
 ## Preliminary naf gpu setup
 See: https://confluence.desy.de/pages/viewpage.action?spaceKey=UHHML&title=Using+GPUs+in+naf
 
+## Prepare folders
+```
+mkdir dataframes
+mkdir model_weights
+mkdir root_files
+```
+
 ## write_pd_skim.py
 It reads input root files and transforms them into h5 files.
 
