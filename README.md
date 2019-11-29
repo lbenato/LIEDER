@@ -14,10 +14,10 @@ It reads input root files and transforms them into h5 files.
 ## samples.py
 Same as LLP repo; used to load sample names.
 
-##dnn_functions.py
+## dnn_functions.py
 Simple function to draw training and validation losses and accuracies.
 
-##dnn.py
+## dnn.py
 - Split training/test samples for both signal and background
 - Transform them into h5
 - Training function
