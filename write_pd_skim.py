@@ -9,48 +9,8 @@ from dnn_functions import *
 #gROOT.ProcessLine('.L Objects.h' )
 #from ROOT import LeptonType, JetType, FatJetType, MEtType, MEtFullType, CandidateType, LorentzType
 
-# storage folder and names of the root files
+# storage folder of the original root files
 folder = '/nfs/dust/cms/group/cms-llp/v7_calo/SkimMET/'
-file_names = ['VBFH_HToSSTobbbb_MH-125_MS-15_ctauS-2000_TuneCUETP8M1_13TeV-powheg-pythia8_Tranche2_PRIVATE-MC.root']
-fileNas = ['VBFH_M15_ctau2000']#, 'QCD_HT50to100', 'QCD_HT100to200', 'QCD_HT200to300', 'QCD_HT300to500', 'QCD_HT500to700', 'QCD_HT700to1000', 'QCD_HT1000to1500', 'QCD_HT1500to2000', 'QCD_HT2000toInf']
-
-file_dict = {
-    'VBFH_M15_ctau2000' : 'VBFH_HToSSTobbbb_MH-125_MS-15_ctauS-2000_TuneCUETP8M1_13TeV-powheg-pythia8_Tranche2_PRIVATE-MC',
-    'VBFH_M20_ctau2000' : 'VBFH_HToSSTobbbb_MH-125_MS-20_ctauS-2000_TuneCUETP8M1_13TeV-powheg-pythia8_Tranche2_PRIVATE-MC',
-    'VBFH_M25_ctau2000' : 'VBFH_HToSSTobbbb_MH-125_MS-25_ctauS-2000_TuneCUETP8M1_13TeV-powheg-pythia8_Tranche2_PRIVATE-MC',
-    'VBFH_M15_ctau5000' : 'VBFH_HToSSTobbbb_MH-125_MS-15_ctauS-5000_TuneCUETP8M1_13TeV-powheg-pythia8_Tranche2_PRIVATE-MC',
-    'VBFH_M20_ctau5000' : 'VBFH_HToSSTobbbb_MH-125_MS-20_ctauS-5000_TuneCUETP8M1_13TeV-powheg-pythia8_Tranche2_PRIVATE-MC',
-    'VBFH_M25_ctau5000' : 'VBFH_HToSSTobbbb_MH-125_MS-25_ctauS-5000_TuneCUETP8M1_13TeV-powheg-pythia8_Tranche2_PRIVATE-MC',
-    'WJetsToLNu' : 'WJetsToLNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8-v1',
-    'ZJetsToNuNu_HT-100To200': 'ZJetsToNuNu_HT-100To200_13TeV-madgraph-v1',
-    'ZJetsToNuNu_HT-200To400': 'ZJetsToNuNu_HT-200To400_13TeV-madgraph-v1',
-    'ZJetsToNuNu_HT-400To600': 'ZJetsToNuNu_HT-400To600_13TeV-madgraph-v1',
-    'ZJetsToNuNu_HT-600To800': 'ZJetsToNuNu_HT-600To800_13TeV-madgraph-v1',
-    'ZJetsToNuNu_HT-800To1200': 'ZJetsToNuNu_HT-800To1200_13TeV-madgraph-v1', 
-    'ZJetsToNuNu_HT-1200To2500': 'ZJetsToNuNu_HT-1200To2500_13TeV-madgraph-v1',
-    'ZJetsToNuNu_HT-2500ToInf': 'ZJetsToNuNu_HT-2500ToInf_13TeV-madgraph-v1',
-    'WW': 'WW_TuneCUETP8M1_13TeV-pythia8-v1',
-    'WZ': 'WZ_TuneCUETP8M1_13TeV-pythia8-v1',
-    'ZZ': 'ZZ_TuneCUETP8M1_13TeV-pythia8-v1',
-    'TTbar' : 'TT_TuneCUETP8M2T4_13TeV-powheg-pythia8-v1',
-
-    'ST_tW_antitop' : 'ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1_ext1-v1',
-    'ST_tW_top' : 'ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1_ext1-v1',
-    'ST_s' : 'ST_s-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1-v1',
-    'ST_t_antitop' : 'ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1-v1',
-    'ST_t_top' : 'ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1-v1',
-    'DYJetsToLL' : 'DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_ext2-v1',
-
-    'QCD_HT100to200' : 'QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8-v1',
-    'QCD_HT200to300' : 'QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8-v1',
-    'QCD_HT300to500' : 'QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8-v1',
-    'QCD_HT500to700' : 'QCD_HT500to700_TuneCUETP8M1_13TeV-madgraphMLM-pythia8-v1',
-    'QCD_HT700to1000' : 'QCD_HT700to1000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8-v1',
-    'QCD_HT1000to1500' : 'QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8-v1',
-    'QCD_HT1500to2000' : 'QCD_HT1500to2000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8-v1',
-    'QCD_HT2000toInf' : 'QCD_HT2000toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8-v1',
-}
-
 sgn = ['VBFH_M15_ctau100','VBFH_M20_ctau100','VBFH_M25_ctau100','VBFH_M15_ctau500','VBFH_M20_ctau500','VBFH_M25_ctau500','VBFH_M15_ctau1000','VBFH_M20_ctau1000','VBFH_M25_ctau1000','VBFH_M15_ctau2000','VBFH_M20_ctau2000','VBFH_M25_ctau2000','VBFH_M15_ctau5000','VBFH_M20_ctau5000','VBFH_M25_ctau5000','VBFH_M15_ctau10000','VBFH_M20_ctau10000','VBFH_M25_ctau10000']
 bkg = ['ZJetsToNuNu','DYJetsToLL','WJetsToLNu','QCD','VV','TTbar','ST','DYJetsToQQ','WJetsToQQ']
 
@@ -61,7 +21,7 @@ var_list = ['EventNumber','RunNumber','LumiNumber','EventWeight','isMC','isVBF',
 variables = []
 
 
-def write_h5(folder,output_folder,file_dict,file_list,test_split,verbose=True):
+def write_h5(folder,output_folder,file_list,test_split,verbose=True):
     print("    Opening ", folder)
     print("\n")
     # loop over files
@@ -135,7 +95,7 @@ def read_h5(folder,file_names):
 '''
 
 print("write")
-write_h5(folder,"dataframes",file_dict,sgn+bkg,test_split=0.2)
+write_h5(folder,"dataframes",sgn+bkg,test_split=0.2)
 
 #print "read"
 #read_h5(folder,file_names)
